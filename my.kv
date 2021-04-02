@@ -1,0 +1,33 @@
+<MyGrid>
+	name: name
+	email: email
+	latParam: latParam
+	GridLayout:
+		cols:1
+		size: root.width-200, root.height-200
+		pos: 100,100
+
+		Label:
+			text:'GUI to Db'
+			size_hint:0.1,0.1
+
+		GridLayout:
+			cols:2
+			Label:
+				text:"name"
+			TextInput:
+				id: name
+				multiline:False
+			Label:
+				text:"Email: "
+			TextInput:
+				id: email
+				multiline:False
+			Label:
+				text:"latParam: "
+			TextInput:
+				id: latParam
+				multiline:False
+		Button:
+			text:"Submit"
+			on_press:root.btn()
