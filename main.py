@@ -14,7 +14,6 @@ class MyGrid(Widget):
     app = MyApp.get_running_app()
     self.latParam.text=app.latParam
 
-    self.latParam = app.latParam
     print('did this work for latParam:::', app.latParam)
 
 
