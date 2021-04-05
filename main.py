@@ -16,7 +16,26 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stderr))
 
-print("Start::: This is running on %r",platform)
+class MyGrid(Widget):
+    name=ObjectProperty(None)
+    email=ObjectProperty(None)
+    latitude = ObjectProperty('something')
+
+    def __init__(self, **kwargs):
+        super(MyGrid, self).__init__(**kwargs)
+        self.app = MyApp.get_running_app()
+        self.latitude.text = "does this work?"
+        # self.latitude.text = self.app.on_gps_location()
+        # self.longitude = None
+        # self.app.my_grid = self
+
+    def btn(self):
+        print('Name: ', self.name.text, 'email: ',self.email.text)
+        self.name.text=''
+        self.email.text=''
+        # if self.app.latitude is not None:
+        #     self.gps_coordinates = (self.app.latitude, self.app.longitude)
+
 
 
 class MyApp(App):
@@ -29,38 +48,16 @@ class MyApp(App):
             gps.configure(on_location=self.on_gps_location)
             gps.start()
         else:
-            # self.my_grid.latitude ='21'
             logger.debug("GPS is not supported outside of Android and iOS.")
 
     def on_gps_location(self, **kwargs):
         self.latitude = kwargs.get("lat")
         self.longitude = kwargs.get("lon")
-        logger.debug("The latitude is %r", self.latitude)
+        logger.debug("The latitude is ", self.latitude)
+        return self.latitude
 
     def build(self):
         return MyGrid()
-
-
-class MyGrid(Widget):
-    name=ObjectProperty(None)
-    email=ObjectProperty(None)
-    latitude = ObjectProperty(None)
-
-    def __init__(self, **kwargs):
-        super(MyGrid, self).__init__(**kwargs)
-        self.app = MyApp.get_running_app()
-        # self.gps_coordinates = None
-        self.latitude.text = self.app.latitude
-        # self.longitude = None
-        # self.app.my_grid = self
-
-    def btn(self):
-        print('Name: ', self.name.text, 'email: ',self.email.text)
-        self.name.text=''
-        self.email.text=''
-        # if self.app.latitude is not None:
-        #     self.gps_coordinates = (self.app.latitude, self.app.longitude)
-
 
 if __name__=="__main__":
     MyApp().run()
