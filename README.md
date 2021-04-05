@@ -1,4 +1,10 @@
 #KivyAppGps1
-This app is to teach me how to move around plyer obejects. I want to get the longitude and latitude to display on the interface of the application. This will only work on a device that has GPS.
 
-My other repo KivyApp1 is the same framework and works on a desktop computer but it has no GPS. I am using that one to help someone that might understand OOP better than me but may not be as familiar with Kivy.
+This code is to build a single screen with inputs for a name, email and display latitude coordinates. I cannot figure out how to pass the latitude object to the screen.
+
+This will only work on a device that has GPS. I have a similar version that will work on any desktop, kivyApp. This repo has the same framework but without GPS.
+I think my problem understanding something about object oriented programming and classes. The “latParam” object I’m trying to pass to the screen is giving me problems and I’m pretty sure I’m doing something wrong here.
+
+When I try to run this on Xcode (after converting with toolchain) I get an error 
+NameError: name 'MyApp' is not defined
+I saved a screen shot in this repo.
