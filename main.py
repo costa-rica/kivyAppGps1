@@ -50,7 +50,7 @@ class MyGrid(Widget):
         super(MyGrid, self).__init__(**kwargs)
         self.app = MyApp.get_running_app()
         # self.gps_coordinates = None
-        # self.latitude = None
+        self.latitude.text = self.app.latitude
         # self.longitude = None
         # self.app.my_grid = self
 
