@@ -19,12 +19,12 @@ logger.addHandler(logging.StreamHandler(sys.stderr))
 class MyGrid(Widget):
     name=ObjectProperty(None)
     email=ObjectProperty(None)
-    latitude = ObjectProperty('something')
+    latitude = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
         self.app = MyApp.get_running_app()
-        self.latitude.text = "does this work?"
+        # self.latitude.text = "does this work?"
         # self.latitude.text = self.app.on_gps_location()
         # self.longitude = None
         # self.app.my_grid = self
@@ -41,7 +41,7 @@ class MyGrid(Widget):
 class MyApp(App):
     def __init__(self, **kwargs):
         super(MyApp, self).__init__(**kwargs)
-        # self.my_grid = None
+        self.my_grid = None
 
     def on_start(self):
         if platform == 'android' or platform == 'ios':
@@ -51,13 +51,14 @@ class MyApp(App):
             logger.debug("GPS is not supported outside of Android and iOS.")
 
     def on_gps_location(self, **kwargs):
-        self.latitude = kwargs.get("lat")
-        self.longitude = kwargs.get("lon")
-        logger.debug("The latitude is ", self.latitude)
-        return self.latitude
+        self.grid.latitude.text = str(kwargs.get("lat"))
+        self.grid.longitude.text = str(kwargs.get("lon"))
+        logger.debug("The latitude is %r", self.latitude)
+        # return self.latitude
 
     def build(self):
-        return MyGrid()
+        self.grid = MyGrid()
+        return self.grid
 
 if __name__=="__main__":
     MyApp().run()
