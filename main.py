@@ -17,25 +17,20 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stderr))
 
 class MyGrid(Widget):
-    name=ObjectProperty(None)
-    email=ObjectProperty(None)
+    activity=ObjectProperty(None)
     latitude = ObjectProperty(None)
+    longitude = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
         self.app = MyApp.get_running_app()
-        # self.latitude.text = "does this work?"
-        # self.latitude.text = self.app.on_gps_location()
-        # self.longitude = None
-        # self.app.my_grid = self
+
 
     def btn(self):
-        print('Name: ', self.name.text, 'email: ',self.email.text)
-        self.name.text=''
-        self.email.text=''
+        print('Activity: ', self.activity.text)
+        #self.activity.text=''
         # if self.app.latitude is not None:
         #     self.gps_coordinates = (self.app.latitude, self.app.longitude)
-
 
 
 class MyApp(App):

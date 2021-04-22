@@ -1,33 +1,36 @@
 <MyGrid>
-	name: name
-	email: email1
-	latitude: latParam
+	acitivty: activity_ui
+	latitude: latitude_ui
+	longitude: longitude_ui
 	GridLayout:
 		cols:1
 		size: root.width-200, root.height-200
 		pos: 100,100
 
 		Label:
-			text:'GUI to Db'
+			text:'GPS to Database'
 			size_hint:0.1,0.1
 
 		GridLayout:
-			cols:2
+			cols:1
 			Label:
-				text:"name"
+				text:"Activity:"
 			TextInput:
-				id: name
-				multiline:False
-			Label:
-				text:"Email: "
-			TextInput:
-				id: email1
-				multiline:False
-			Label:
-				text:"latParam: "
-			TextInput:
-				id: latParam
-				multiline:False
+				id: activity_ui
+				multiline:True
+
+			GridLayout:
+				cols:2
+				Label:
+					text:"Latitude: "
+				Label:
+					text:"Longitude: "
+				TextInput:
+					id: latitude_ui
+					multiline:False
+				TextInput:
+					id: longitude_ui
+					multiline:False
 		Button:
 			text:"Submit"
 			on_press:root.btn()
