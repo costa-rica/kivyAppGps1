@@ -31,6 +31,12 @@
 				TextInput:
 					id: longitude_ui
 					multiline:False
-		Button:
-			text:"Submit"
-			on_press:root.btn()
+			GridLayout:
+				cols:2
+				Button:
+					text:"Start Sending"
+					on_press:root.start_btn()
+
+				Button:
+					text:"Stop Sending"
+					on_press:root.stop_btn()

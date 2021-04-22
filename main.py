@@ -13,6 +13,7 @@ from kivy.utils import platform
 from plyer import gps
 import requests
 import json
+from kivy.clock import Clock
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -28,22 +29,20 @@ class MyGrid(Widget):
         self.app = MyApp.get_running_app()
 
 
-    def btn(self):
-        # test_latitude = self.latitude
-        # test_longitude = self.longitude
-        # print('test:::', test_latitude, test_longitude)
+    def start_btn(self,*args):
+        self.recorded_activity = self.activity.text
+        self.start_send_data = Clock.schedule_interval(self.send_data,2)
+
+    def stop_btn(self, *args):
+        self.start_send_data.cancel()
+
+    def send_data(self, *args):
         json_data = {
-            "Activity": self.activity.text,
+            "Activity": self.recorded_activity,
             "Latitude":self.latitude.text,
             "Longitude":self.longitude.text
             }
-        # json_data = {"Latitude": self.latitude.text}
         res = requests.post(url=self.app.firebase_url, json = json_data)
-        print('Activity: ', self.activity.text)
-        print(res)
-        #self.activity.text=''
-        # if self.app.latitude is not None:
-        #     self.gps_coordinates = (self.app.latitude, self.app.longitude)
 
 
 class MyApp(App):
