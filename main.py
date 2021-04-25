@@ -14,7 +14,6 @@ from plyer import gps
 import requests
 import json
 from kivy.clock import Clock
-
 from config import Config
 
 logger = logging.getLogger(__name__)
@@ -34,6 +33,8 @@ class MyGrid(Widget):
     def start_btn(self,*args):
         self.recorded_activity = self.activity.text
         self.start_send_data = Clock.schedule_interval(self.send_data,2)
+        #how can i send data without clock?
+        #would this be a terrible idea, because i would get an unnecessary amount of data?
 
     def stop_btn(self, *args):
         self.start_send_data.cancel()
