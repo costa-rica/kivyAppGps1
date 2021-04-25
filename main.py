@@ -15,6 +15,8 @@ import requests
 import json
 from kivy.clock import Clock
 
+from config import Config
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stderr))
@@ -46,7 +48,7 @@ class MyGrid(Widget):
 
 
 class MyApp(App):
-    firebase_url = 'https://leafy-outrider-245913-default-rtdb.firebaseio.com/.json'
+    firebase_url = Config().firebase_url + '.json'
     def __init__(self, **kwargs):
         super(MyApp, self).__init__(**kwargs)
         self.my_grid = None
