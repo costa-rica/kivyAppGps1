@@ -2,3 +2,6 @@ dist/
 build/
 .cache/
 .DS_Store
+.env
+config.py
+__pycache__/
